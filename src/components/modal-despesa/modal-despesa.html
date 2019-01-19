@@ -1,0 +1,78 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>Nova Despesas</ion-title>
+    </ion-navbar>
+  </ion-header>
+<ion-content padding>
+
+<form name="form" (ngSubmit)="onSubmit()">
+
+  <ion-item >
+    <ion-label>Despesa</ion-label>
+    <ion-input  type="text" name='nome' [(ngModel)]="item.item_nome"></ion-input>
+  </ion-item>
+
+  <ion-item >
+    <ion-label>Quantidade</ion-label>
+    <ion-input type="number" name='quantidade' [(ngModel)]="item.item_quantidade"></ion-input>
+  </ion-item>
+  <ion-item >
+    <ion-label>Valor</ion-label>
+    <ion-input  type="number" name='valor' [(ngModel)]="item.item_valor"></ion-input>
+  </ion-item>
+  <button ion-button block outline type="submit" >Adicionar</button>
+  <button ion-button block color="light" (click)="closeModal()">Sair</button>
+</form>
+  <!-- <form>
+    <ion-item>
+      <ion-label fixed>Nome</ion-label>
+      <ion-input type="text" value="">{{item.item_nome }}</ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Quantidade</ion-label>
+      <ion-input type="text" value="">{{item.item_quantidade }}</ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Valor</ion-label>
+      <ion-input type="text" value="">{{item.item_valor | currency:'BRL': true }}</ion-input>
+    </ion-item>
+  </form> -->
+
+  <!-- <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-label fixed>Nome</ion-label>
+        <span>{{item.item_nome}}</span>
+      </ion-col>
+      <ion-col>
+        <ion-label fixed>Quantidade</ion-label>
+        <span>{{item.item_quantidade}}</span>
+      </ion-col>
+      <ion-col>
+        <ion-label fixed>Valor</ion-label>
+        <ion-input></ion-input>
+      
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+
+    <!-- <ion-list>
+
+      <ion-item>
+        <ion-label fixed>Nome</ion-label>
+        <ion-input type="text" [(ngModel)]="item.item_nome"></ion-input>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label fixed>Quantidade</ion-label>
+        <ion-input type="number" [(ngModel)]="item.item_quantidade"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label fixed>Valor</ion-label>
+          <ion-input type="text">{{item.item_valor | currency:'BRL': true }}</ion-input>
+        </ion-item>
+    </ion-list> -->
+
+
+</ion-content>

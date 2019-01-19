@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Despesas</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-list>
+      <ion-item-group>
+        <ion-item-divider color="primary" style="font-style: italic;">Despesas</ion-item-divider>
+        <ion-item *ngFor="let item of items" (click)="selectItem(item)">
+          <ion-avatar item-start>
+            <img src="../assets/imgs/{{item.item_img}}">
+          </ion-avatar>
+          <h2>{{item.item_nome}}</h2>
+        </ion-item>
+      </ion-item-group>
+    </ion-list>
+
+  <ion-fab right bottom>
+    <button ion-fab color="primary"><ion-icon name="ios-menu-outline"></ion-icon></button>
+    <ion-fab-list side="top">
+        <button ion-fab><ion-icon name="ios-unlock-outline" ></ion-icon></button>
+        <button ion-fab><ion-icon name="ios-person-add-outline" ></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

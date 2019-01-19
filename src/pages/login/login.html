@@ -1,0 +1,42 @@
+
+<ion-content padding>
+
+  <ion-grid>
+    <ion-row>
+
+      <ion-col col-12 text-center>
+          <ion-img id="logo" width="120px" height="120px" src="../assets/imgs/logo.png"></ion-img>
+      </ion-col>
+
+    </ion-row>
+    
+  </ion-grid>
+
+  <form name="form" (ngSubmit)="onSubmit()">
+
+    <ion-item  class="user">
+        <ion-icon name="ios-person-outline" item-start></ion-icon>
+      <ion-input placeholder="Digite o seu Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name='email' [(ngModel)]="formData.email"></ion-input>
+    </ion-item>
+
+    <ion-item  class="pass">
+      <ion-icon name="ios-lock-outline" item-start></ion-icon>
+      <ion-input type="password" placeholder="Digite sua Senha" name='pass' [(ngModel)]="formData.pass"></ion-input>
+    </ion-item>
+
+  </form>
+
+  <div class="btn-login">
+    <button ion-button block  (click)="Login()">Entrar</button>
+    <!-- <button ion-button block class="btn-grey" (click)="toRegister()">Cadastrar</button>
+    <button ion-button block class="btn-grey" (click)="toRecoverPassword()" end>Recuperar Senha</button> -->
+  </div>
+
+  <ion-fab right bottom>
+    <button ion-fab color="primary"><ion-icon name="ios-menu-outline"></ion-icon></button>
+    <ion-fab-list side="top">
+        <button ion-fab (click)="toRecoverPassword()"><ion-icon name="ios-unlock-outline" ></ion-icon></button>
+        <button ion-fab (click)="toRegister()"><ion-icon name="ios-person-add-outline" ></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

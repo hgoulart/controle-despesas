@@ -1,3 +1,24 @@
 page-home {
-
+    .fab-in-list{
+        width: 60px;
+        height: 60px;
+    }
+    .icon-income{
+        background-image: url('../assets/imgs/icon-income.png');
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .icon-expense{
+        background-image: url('../assets/imgs/icon-expense.png');
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .icon-report{
+        background-image: url('../assets/imgs/icon-report.png');
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
 }
