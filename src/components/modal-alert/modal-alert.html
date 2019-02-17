@@ -1,0 +1,17 @@
+<ion-content padding>
+
+  <ion-list>
+    <ion-list-header color="secondary">
+      <ion-label>Confirmar a exclusão?</ion-label>
+    </ion-list-header>
+    <ion-item >
+      <ion-label>{{dados.item_nome}}</ion-label>
+    </ion-item>
+    <ion-item >
+      <ion-label>{{ dados.preco | currency:'BRL': true}}</ion-label>
+    </ion-item>
+  </ion-list>
+  <button ion-button block  type="submit" >Confirmar</button>
+  <button ion-button block outline (click)="closeModal()">Cancelar</button>
+
+</ion-content>

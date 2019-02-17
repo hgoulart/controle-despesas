@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Despesas</ion-title>
+    <ion-title>{{categoria.categoria_nome}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -11,7 +11,7 @@
 
     <ion-list>
       <ion-item-group>
-        <ion-item-divider color="primary" style="font-style: italic;">Despesas</ion-item-divider>
+        <ion-item-divider color="primary" style="font-style: italic;">{{categoria.categoria_nome}}</ion-item-divider>
         <ion-item *ngFor="let item of items" (click)="selectItem(item)">
           <ion-avatar item-start>
             <img src="../assets/imgs/{{item.item_img}}">
@@ -20,12 +20,12 @@
         </ion-item>
       </ion-item-group>
     </ion-list>
-
+    <button ion-button block outline (click)="closeModal()">Voltar</button>
   <ion-fab right bottom>
     <button ion-fab color="primary"><ion-icon name="ios-menu-outline"></ion-icon></button>
     <ion-fab-list side="top">
         <button ion-fab><ion-icon name="ios-unlock-outline" ></ion-icon></button>
-        <button ion-fab><ion-icon name="ios-person-add-outline" ></ion-icon></button>
+        <button ion-fab (click)="toRelatorios()"><ion-icon name="ios-stats-outline" ></ion-icon></button>
     </ion-fab-list>
   </ion-fab>
 </ion-content>

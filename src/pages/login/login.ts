@@ -6,6 +6,7 @@ import { HomePage } from '../home/home';
 // import { DashboardPage } from '../dashboard/dashboard';
 // import { RecoverPasswordPage } from '../recover-password/recover-password';
 // import { ModalErrorComponent } from '../../components/modal-error/modal-error';
+import { LoadingComponent } from '../../components/loading/loading';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 @Component({
@@ -16,14 +17,13 @@ export class LoginPage {
 
   userData: any;
   // formData =  {"email":"admin@email.com","pass":"123"};
-  formData =  {"email":"hingorocha@gmail.com","pass":"123"};
+  formData =  {"email":"hingo@email.com","pass":"123"};
   //  formData =  {"email":"","pass":""};
-  user: any = {
-    user_id : 0,
-    user_name : "",
-    user_email : "",
-    user_cpf: "",
-    user_admin : 0
+  loading: any;
+  usuario: any = {
+    usuario_id : 0,
+    usuario_nome : "",
+    usuario_email : ""
   };
 
   constructor( public modalCtrl: ModalController, platform: Platform, public navCtrl: NavController, private service: ServiceProvider, public navParams: NavParams, private splashScreen: SplashScreen) {
@@ -49,72 +49,79 @@ export class LoginPage {
   }
   async Login(){
 
-    this.navCtrl.setRoot(HomePage);
-    this.navCtrl.popToRoot();
+    if(this.formData.email != '' && this.formData.pass != ''){
 
-    // if(this.formData.email != '' && this.formData.pass != ''){
+      console.log(this.formData);
 
-    //   console.log(this.formData);
+      // this.navCtrl.setRoot(TabsPage);
 
-    //   // this.navCtrl.setRoot(TabsPage);
+      this.service.showLoading();
 
-    //   this.service.showLoading();
+      setTimeout(()=>{
 
-    //   setTimeout(()=>{
+        let url = 'login.php';
 
-    //     let url = 'login.php';
-
-    //     // let loginUser = this.service.getUrl()+ url;
+        // let loginUser = this.service.get()+ url;
   
-    //     this.service.post(url, this.formData).subscribe(
-    //       data => {
+        this.service.post(url, this.formData).subscribe(
+          data => {
   
-    //         this.user = data;
+            this.usuario = data;
 
-    //         console.log(this.user);
+            console.log(this.usuario);
   
-    //         if(this.user != 'Erro'){
+            if(this.usuario != 'Erro'){
+              this.service.setUser(this.usuario);
 
-    //           this.service.setUser(this.user);
+              this.service.showLoading();
+              this.navCtrl.setRoot(HomePage);
+              this.navCtrl.popToRoot();
 
-    //           if(this.user.user_admin == '1'){
-    //             console.log(this.user);
-    //             this.service.hideLoading();
-    //             this.navCtrl.setRoot(DashboardPage);
-    //             this.navCtrl.popToRoot();
-    
-    //           }else{
-    //             this.navCtrl.setRoot(HomePage);
-    //             this.navCtrl.popToRoot();
-    //             console.log(this.user);
-    //           }
               
-    //         }
-    //         else{
-    //           this.service.hideLoading();
-    //           this.modalError('Usuário ou Senha inválidos!');  
-    //         } 
-    //       },
-    //       err => {
-    //         this.service.hideLoading();
-    //         this.modalError(err.status+' - '+err.statusText);
-      
-    //         console.log(err);
-    //       }
-    //     );
-    //   }, 1000);
 
-    // }else{
-    //   this.modalError("Existem campos vazios!");
-    // }
+              // if(this.user.user_admin == '1'){
+              //   console.log(this.user);
+              //   this.service.hideLoading();
+              //   this.navCtrl.setRoot(DashboardPage);
+              //   this.navCtrl.popToRoot();
+    
+              // }else{
+              //   this.navCtrl.setRoot(HomePage);
+              //   this.navCtrl.popToRoot();
+              //   console.log(this.user);
+              // }
+              
+            }
+            else{
+              alert("Erro");
+              this.service.showLoading();
+              // this.modalError('Usuário ou Senha inválidos!');  
+            } 
+          },
+          err => {
+            alert("Erro");
+            this.service.showLoading();
+            // this.modalError(err.status+' - '+err.statusText);
+      
+            console.log(err);
+          }
+        );
+      }, 1000);
+
+    }else{
+      alert("Existem campos vazios!");
+    }
   }
   toRecoverPassword(){
     // this.navCtrl.setRoot(RecoverPasswordPage);
   }
-  // modalError(message) {
-  //   let modaError = this.modalCtrl.create(ModalErrorComponent, {data: message});
-  //   modaError.present();
-  // }
+  showLoading() {
+    this.loading = this.modalCtrl.create( LoadingComponent );
+    this.loading.present();
+  }
+  hideLoading(){
+    this.loading.dismiss();
+  }
   editProfile(){
     // this.navCtrl.push(RegisterPage);
   }

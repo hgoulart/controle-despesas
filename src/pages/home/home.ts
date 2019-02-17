@@ -5,6 +5,7 @@ import { ServiceProvider } from '../../providers/service/service';
 import { ModalDespesaComponent } from '../../components/modal-despesa/modal-despesa';
 import { FormGroup, FormControl } from '@angular/forms';
 import { DespesasPage } from '../despesas/despesas';
+import { RelatoriosPage } from '../relatorios/relatorios';
 
 @Component({
   selector: 'page-home',
@@ -25,7 +26,7 @@ export class HomePage {
     this.navCtrl.push(DespesasPage, {data: 2 });
   }
   public toEntradas(){
-    this.navCtrl.push(DespesasPage);
+    this.navCtrl.push(DespesasPage, {data: 1 });
   }
   carregarCategorias(){
 
@@ -56,5 +57,9 @@ export class HomePage {
       }
     );
 
+  }
+
+  toRelatorios(){
+    this.navCtrl.push(RelatoriosPage);
   }
 }

@@ -1,9 +1,10 @@
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, ViewController } from 'ionic-angular';
 import { Component } from '@angular/core';
-import {Validators, FormBuilder } from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 import { ServiceProvider } from '../../providers/service/service';
 import { ModalDespesaComponent } from '../../components/modal-despesa/modal-despesa';
 import { FormGroup, FormControl } from '@angular/forms';
+import { RelatoriosPage } from '../relatorios/relatorios';
 
 @IonicPage()
 @Component({
@@ -24,10 +25,10 @@ export class DespesasPage {
   categiaSelecionada: any;
   categoriaForm;
   categoriasName;
-  categoria: string;
+  categoria: any;
   items: any;
 
-  constructor(params: NavParams, public modalCtrl: ModalController, public navCtrl: NavController, private formBuilder: FormBuilder, private service: ServiceProvider) {
+  constructor(public viewCtrl: ViewController, params: NavParams, public modalCtrl: ModalController, public navCtrl: NavController, private formBuilder: FormBuilder, private service: ServiceProvider) {
 
     this.categoriaForm = new FormGroup({
       "categoriasName": new FormControl({value: '', disabled: false})
@@ -107,7 +108,8 @@ export class DespesasPage {
     this.service.post(url, categoria ).subscribe(
       data => {
 
-        this.items = data;
+        this.categoria = data;
+        this.items = this.categoria.items;
 
         console.log(this.items);
 
@@ -126,5 +128,11 @@ export class DespesasPage {
     console.log(produto);
     const modal = this.modalCtrl.create( ModalDespesaComponent, {data: produto });
     modal.present();
+  }
+  closeModal(){
+    this.viewCtrl.dismiss();
+  }
+  toRelatorios(){
+    this.navCtrl.push(RelatoriosPage);
   }
 }

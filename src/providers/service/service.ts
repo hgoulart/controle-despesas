@@ -11,7 +11,14 @@ const httpOptions = {
 export class ServiceProvider {
 
   API_url: string = "http://localhost/controle-despesas-api/data/api/";
+  // API_url: string  = "http://hingorocha.com.br/homologaprojeto/despesas-api/data/api/";
   categorias: any;
+  usuario: any = {
+    usuario_id: 0,
+    usuario_nome: '',
+    usuario_email: '',
+
+  }
 
   constructor(public http: HttpClient) {
     console.log('Hello ServiceProvider Provider');
@@ -27,6 +34,15 @@ export class ServiceProvider {
   }
   post(url, data){
     return this.http.post(this.API_url+url, data, httpOptions);
+  }
+  setUser(usuario){
+    this.usuario = usuario;
+  }
+  getUser(){
+    return this.usuario;
+  }
+  showLoading(): boolean{
+    return document.getElementsByClassName("show-loading")[0].classList.toggle("show");
   }
 }
 //http://localhost/controle-despesas-api/data/api/selecionar-categorias.php

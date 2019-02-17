@@ -1,0 +1,41 @@
+app-loading {
+    
+    .show-loading{
+        display: none;
+        z-index: 99999;
+        background-color: rgba(0, 0, 0, 1 );
+    }
+    .show-loading.show{
+        display: block;
+    }
+    .msg-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        flex-direction: column;
+        .msg-return{
+            width: 164px;
+            height: 207px;
+        }
+        p{
+            color: #ffffff;
+            font-weight: 900;
+            font-size: 16px;
+            animation: loadAnimation 2.5s infinite;
+        }
+    }
+
+    @keyframes loadAnimation {
+        0%   { opacity: 0; color: #d0a44d;}
+        20%  { opacity: 0.5; color: #f53d3d;}
+        30%  { opacity: 1; color: #d0a44d;}
+        40%  { opacity: 0.5; color: #f53d3d;}
+        50%  { opacity: 0; color: #d0a44d;}
+        60%  { opacity: 0.5; color: #f53d3d;}
+        70%  { opacity: 1; color: #d0a44d;}
+        80%  { opacity: 0.5; color: #f53d3d;}
+        100% { opacity: 0; color: #d0a44d;}
+    }
+    
+}
