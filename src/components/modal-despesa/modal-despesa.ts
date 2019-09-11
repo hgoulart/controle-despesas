@@ -10,7 +10,7 @@ import * as moment from 'moment';
 })
 export class ModalDespesaComponent {
 
-  item: any;
+  categoria: any;
   today: string;
 
   constructor(public navCtrl: NavController, private service: ServiceProvider, public viewCtrl: ViewController, params: NavParams) {
@@ -19,30 +19,30 @@ export class ModalDespesaComponent {
     console.log(this.today);
     console.log(this.today.substring(0, 7));
     let dados = params.get('data');
-    this.item = {
-      categoria_id : dados.categoria_id,
-      item_id: dados.item_id,
-      item_img : dados.item_img,
-      item_nome: dados.item_nome,
+    this.categoria = {
+      classe_id : dados.classe_id,
+      categoria_id: dados.categoria_id,
+      categoria_img : dados.categoria_img,
+      categoria_nome: dados.categoria_nome,
       comments: '',
-      item_valor: ''
+      categoria_valor: ''
     };
 
-    console.log(this.item);
+    console.log(this.categoria);
   }
   onSubmit(){
-    console.log(this.item);
+    console.log(this.categoria);
     // this.item.item_valor = this.item.item_valor.replace(/,/g, '').replace(/./g, '');
     
     let usuario = this.service.getUser();
-    this.item.usuario_id = usuario.usuario_id;
-    this.item.busca_data = this.today;
-    console.log(this.item);
+    this.categoria.usuario_id = usuario.usuario_id;
+    this.categoria.busca_data = this.today;
+    console.log(this.categoria);
     this.service.showLoading();
 
     let url = 'salvar-movimentacao.php';
 
-    this.service.post(url, this.item ).subscribe(
+    this.service.post(url, this.categoria ).subscribe(
       data => {
 
         console.log(data);

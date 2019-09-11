@@ -13,14 +13,14 @@ import { RelatoriosPage } from '../relatorios/relatorios';
 })
 export class HomePage {
 
-  categorias: any;
+  classes: any;
 
   constructor( public modalCtrl: ModalController, public navCtrl: NavController, private formBuilder: FormBuilder, private service: ServiceProvider ) {
     
   }
   ionViewDidLoad() {
     console.log(' HomesPage');
-    this.carregarCategorias();
+    this.carregarClasses();
   }
   public toSaidas(){
     this.navCtrl.push(DespesasPage, {data: 2 });
@@ -28,18 +28,18 @@ export class HomePage {
   public toEntradas(){
     this.navCtrl.push(DespesasPage, {data: 1 });
   }
-  carregarCategorias(){
+  carregarClasses(){
 
   // this.service.showLoading();
 
-    let url = 'selecionar-categorias.php';
+    let url = 'selecionar-classes.php';
 
     this.service.get(url).subscribe(
       data => {
 
-        this.categorias = data;
+        this.classes = data;
 
-        console.log(this.categorias);
+        console.log(this.classes);
 
         // if(this.user != 'Erro'){
           

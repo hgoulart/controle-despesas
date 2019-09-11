@@ -12,7 +12,7 @@ export class ServiceProvider {
 
   API_url: string = "http://localhost/controle-despesas-api/data/api/";
   // API_url: string  = "http://hingorocha.com.br/homologaprojeto/despesas-api/data/api/";
-  categorias: any;
+  classes: any;
   usuario: any = {
     usuario_id: 0,
     usuario_nome: '',
@@ -24,7 +24,7 @@ export class ServiceProvider {
     console.log('Hello ServiceProvider Provider');
   }
   get(url){
-    // return this.categorias = [
+    // return this.classes = [
     //   {id: 1, nome: 'Alimento'},{id: 2, nome: 'Conta Fixa'},{id: 3, nome: 'Happy Hour'},{id: 4,nome: 'Veículo'}
     // ];
     return this.http.get(this.API_url+url);
@@ -45,4 +45,4 @@ export class ServiceProvider {
     return document.getElementsByClassName("show-loading")[0].classList.toggle("show");
   }
 }
-//http://localhost/controle-despesas-api/data/api/selecionar-categorias.php
+//http://localhost/controle-despesas-api/data/api/selecionar-classes.php
