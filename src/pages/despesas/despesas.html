@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{categoria.categoria_nome}}</ion-title>
+    <ion-title>{{classe.classe_nome}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -11,12 +11,12 @@
 
     <ion-list>
       <ion-item-group>
-        <ion-item-divider color="primary" style="font-style: italic;">{{categoria.categoria_nome}}</ion-item-divider>
-        <ion-item *ngFor="let item of items" (click)="selectItem(item)">
+        <ion-item-divider color="primary" style="font-style: italic;">{{classe.classe_nome}}</ion-item-divider>
+        <ion-item *ngFor="let categoria of categorias" (click)="selectCategoria(categoria)">
           <ion-avatar item-start>
-            <img src="../assets/imgs/{{item.item_img}}">
+            <img src="../assets/imgs/{{categoria.categoria_img}}">
           </ion-avatar>
-          <h2>{{item.item_nome}}</h2>
+          <h2>{{categoria.categoria_nome}}</h2>
         </ion-item>
       </ion-item-group>
     </ion-list>

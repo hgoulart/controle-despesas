@@ -19,25 +19,25 @@ export class DespesasPage {
     data: ''
   };
   searchQuery: string = '';
-  categorias: any;
+  classes: any;
   produtos: any;
   hasSearch: boolean = false;
   categiaSelecionada: any;
-  categoriaForm;
-  categoriasName;
-  categoria: any;
-  items: any;
+  classeForm;
+  classesName;
+  classe: any;
+  categorias: any;
 
   constructor(public viewCtrl: ViewController, params: NavParams, public modalCtrl: ModalController, public navCtrl: NavController, private formBuilder: FormBuilder, private service: ServiceProvider) {
 
-    this.categoriaForm = new FormGroup({
-      "categoriasName": new FormControl({value: '', disabled: false})
+    this.classeForm = new FormGroup({
+      "classesName": new FormControl({value: '', disabled: false})
     });
 
-    this.categoria = params.get('data');
-    console.log(this.categoria);
+    this.classe = params.get('data');
+    console.log(this.classe);
         // this.initializeItems();
-    this.carregarItems(this.categoria);
+    this.carregarCategorias(this.classe);
 
     this.expense = this.formBuilder.group({
       nome: ['', Validators.required],
@@ -52,12 +52,12 @@ export class DespesasPage {
   despesaForm(){
     console.log(this.expense.value);
   }
-  initializeItems() {
+  initializeCategorias() {
 
   }
-  getItems(ev: any) {
+  getCategorias(ev: any) {
     // Reset items back to all of the items
-    this.initializeItems();
+    this.initializeCategorias();
 
     // set val to the value of the searchbar
     const val = ev.target.value;
@@ -65,18 +65,18 @@ export class DespesasPage {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.hasSearch = true;
-      this.items = this.items.filter((item) => {
-        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      this.categorias = this.categorias.filter((categoria) => {
+        return (categoria.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
   }
-  selectItem(item){
+  selectCategoria(categoria){
 
-    console.log(item);
+    console.log(categoria);
 
-    let url = 'selecionar-item.php';
+    let url = 'selecionar-categoria.php';
   
-    this.service.post(url, item.item_id ).subscribe(
+    this.service.post(url, categoria.categoria_id ).subscribe(
       data => {
 
         console.log(data);
@@ -99,19 +99,19 @@ export class DespesasPage {
       }
     );
   }
-  carregarItems(categoria){
+  carregarCategorias(classe){
 
   // this.service.showLoading();
 
-    let url = 'selecionar-items.php';
+    let url = 'selecionar-categorias.php';
 
-    this.service.post(url, categoria ).subscribe(
+    this.service.post(url, classe ).subscribe(
       data => {
 
-        this.categoria = data;
-        this.items = this.categoria.items;
+        this.classe = data;
+        this.categorias = this.classe.categorias;
 
-        console.log(this.items);
+        console.log(this.categorias);
 
 
       },

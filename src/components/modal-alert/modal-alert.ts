@@ -11,7 +11,7 @@ export class ModalAlertComponent {
   dados: any =  {
     item_img: "",
     item_nome: "",
-    m_categoria_id: "",
+    m_classe_id: "",
     m_item_id: "",
     movimentacao_id: "",
     observacoes: "",

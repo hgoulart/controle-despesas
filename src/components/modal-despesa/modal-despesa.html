@@ -9,18 +9,18 @@
 
     <ion-item >
       <ion-label>Despesa</ion-label>
-      <ion-input  type="text" name='nome' [(ngModel)]="item.item_nome"></ion-input>
+      <ion-input  type="text" name='nome' [(ngModel)]="categoria.categoria_nome"></ion-input>
 
     </ion-item>
     <ion-item>
       <label>Valor</label>
       <!-- <input type="text" name="money" placeholder="(R$) Real"  value="item.item_valor"/> -->
-      <input class="input-text" currencyMask name=" money" [(ngModel)]="item.item_valor" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"/>
+      <input class="input-text" currencyMask name=" money" [(ngModel)]="categoria.categoria_valor" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"/>
     </ion-item>
 
     <ion-item>
       <ion-textarea placeholder="Tap here" rows="3" maxLength="500" 
-          [(ngModel)]="item.comments" name="comments" autocomplete="on" placeholder="Observações:">
+          [(ngModel)]="categoria.comments" name="comments" autocomplete="on" placeholder="Observações:">
       </ion-textarea>
     </ion-item>
 
