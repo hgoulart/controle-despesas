@@ -67,6 +67,7 @@ export class RelatoriosPage {
         data => {
   
           this.movimentacao = data;
+          console.log(this.movimentacao);
           
           for(let item of this.movimentacao){
             console.log(item);
