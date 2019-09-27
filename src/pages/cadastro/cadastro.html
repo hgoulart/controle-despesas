@@ -1,0 +1,35 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>cadastro</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <form class="form-list" name="form">
+    <ion-list>
+      <ion-item>
+        <ion-label>Nome</ion-label>
+        <ion-input type="text" id="name" name='nome' placeholder="Digite seu nome" [(ngModel)]="formData.nome"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Email</ion-label>
+        <ion-input pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="Digite seu email" name='email' [(ngModel)]="formData.email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Senha</ion-label>
+        <ion-input type="password"  name='password' [(ngModel)]="formData.password"></ion-input>
+      </ion-item>
+
+      <div class="login">
+        <button ion-button block color="none" class="btn-register-user" (click)="register(formData)">Confirmar</button>
+        <button ion-button block color="none" class="btn-cancel-register-user" (click)="cancelRegister()">Cancelar</button>
+      </div>
+    </ion-list>
+
+  </form>
+
+</ion-content>

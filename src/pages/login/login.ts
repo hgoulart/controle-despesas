@@ -8,6 +8,7 @@ import { HomePage } from '../home/home';
 // import { ModalErrorComponent } from '../../components/modal-error/modal-error';
 import { LoadingComponent } from '../../components/loading/loading';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { CadastroPage } from '../cadastro/cadastro';
 
 @Component({
   selector: 'page-login',
@@ -45,7 +46,7 @@ export class LoginPage {
     console.log('LoginPage');
   }
   toRegister(){
-    // this.navCtrl.push(RegisterPage);
+    this.navCtrl.push(CadastroPage);
   }
   async Login(){
 

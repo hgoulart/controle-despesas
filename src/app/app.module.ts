@@ -10,6 +10,7 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { DespesasPage } from '../pages/despesas/despesas';
 import { RelatoriosPage } from '../pages/relatorios/relatorios';
+import { CadastroPage } from '../pages/cadastro/cadastro';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -35,7 +36,8 @@ import { NgxCurrencyModule } from "ngx-currency";
     RelatoriosPage,
     ModalDespesaComponent,
     LoadingComponent,
-    ModalAlertComponent
+    ModalAlertComponent,
+    CadastroPage
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,8 @@ import { NgxCurrencyModule } from "ngx-currency";
     RelatoriosPage,
     ModalDespesaComponent,
     LoadingComponent,
-    ModalAlertComponent
+    ModalAlertComponent,
+    CadastroPage
   ],
   providers: [
     StatusBar,

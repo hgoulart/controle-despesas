@@ -34,13 +34,33 @@ export class RelatoriosPage {
   doughnutChartData:number[];
   doughnutChartType:string;
   doughnutChartOptions: any;
-  chart: any = new Array();
+  chart: any;
+  categorias: any;
 
   constructor(  public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams, private service: ServiceProvider ) {
     this.searchDate = moment().format();
     this.today = moment().format();
     this.hasOrder = false;
-    this.teste();
+    this.chart = {
+      salario : [],
+      deposito : [],
+      entretenimento : [],
+      veiculo : [],
+      roupa : [],
+      comunicacao : [],
+      comerFora : [],
+      presente : [],
+      alimentacao : [],
+      saude : [],
+      casa : [],
+      higienePessoal : [],
+      pet : [],
+      esporte : []
+    };
+    this.categorias ={
+      nome : [],
+      total : []
+    }
   }
 
   ionViewDidLoad() {
@@ -53,7 +73,6 @@ export class RelatoriosPage {
     this.saidaPreco = new Array();
     this.movimentacao =  new Array();
     this.carregarMovimentacao();
-    this.teste();
   }
   carregarMovimentacao(){
     let date = this.searchDate.substring(0, 7);
@@ -71,19 +90,81 @@ export class RelatoriosPage {
   
       this.movimentacao = data;
 
-      console.log(this.movimentacao);
-      
-      for(let categoria of this.movimentacao){
-        console.log(categoria);
+      let salario: number = 0;
+      let deposito: number = 0;
+      let entretenimento: number = 0;
+      let veiculo: number = 0;
+      let roupa: number = 0;
+      let comunicacao: number = 0;
+      let comerFora: number = 0;
+      let presente: number = 0;
+      let alimentacao: number = 0;
+      let saude: number = 0;
+      let casa: number = 0;
+      let higienePessoal: number = 0;
+      let pet: number = 0;
+      let esporte: number = 0;
 
-        let categ = categoria.m_categoria_id;
-        
-        // categoria.preco = categoria.preco.replace(/\,/g, "").replace(/\./g, "");
-        for(let cat of this.movimentacao){
-          if(categ === cat.m_categoria_id){
-            this.chart.push(cat);
+      for(let categoria of this.movimentacao){
+
+          if(categoria.m_categoria_id == 1){
+            salario += (+categoria.preco);
+            this.chart['salario'].push(categoria);
+            this.chart['salario'].total = salario;
+          }else if(categoria.m_categoria_id == 2){
+            deposito += (+categoria.preco);
+            this.chart['deposito'].push(categoria);
+            this.chart['deposito'].total = deposito;
+          }else if(categoria.m_categoria_id == 3){
+            entretenimento += (+categoria.preco);
+            this.chart['entretenimento'].push(categoria);
+            this.chart['entretenimento'].total = entretenimento;
+          }else if(categoria.m_categoria_id == 4){
+            veiculo += (+categoria.preco);
+            this.chart['veiculo'].push(categoria);
+            this.chart['veiculo'].total = veiculo;
+          }else if(categoria.m_categoria_id == 5){
+            roupa += (+categoria.preco);
+            this.chart['roupa'].push(categoria);
+            this.chart['roupa'].total = roupa;
+          }else if(categoria.m_categoria_id == 6){
+            comunicacao += (+categoria.preco);
+            this.chart['comunicacao'].push(categoria);
+            this.chart['comunicacao'].total = comunicacao;
+          }else if(categoria.m_categoria_id == 7){
+            comerFora += (+categoria.preco);
+            this.chart['comerFora'].push(categoria);
+            this.chart['comerFora'].total = comerFora;
+          }else if(categoria.m_categoria_id == 8){
+            presente += (+categoria.preco);
+            this.chart['presente'].push(categoria);
+            this.chart['presente'].total = presente;
+          }else if(categoria.m_categoria_id == 9){
+            alimentacao += (+categoria.preco);
+            this.chart['alimentacao'].push(categoria);
+            this.chart['alimentacao'].total = alimentacao;
+          }else if(categoria.m_categoria_id == 10){
+            saude += (+categoria.preco);
+            this.chart['saude'].push(categoria);
+            this.chart['saude'].total = saude;
+          }else if(categoria.m_categoria_id == 11){
+            casa += (+categoria.preco);
+            this.chart['casa'].push(categoria);
+            this.chart['casa'].total = casa;
+          }else if(categoria.m_categoria_id == 12){
+            higienePessoal += (+categoria.preco);
+            this.chart['higienePessoal'].push(categoria);
+            this.chart['higienePessoal'].total = higienePessoal;
+          }else if(categoria.m_categoria_id == 13){
+            pet += (+categoria.preco);
+            this.chart['pet'].push(categoria);
+            this.chart['pet'].total = pet;
+          }else if(categoria.m_categoria_id == 14){
+            esporte += (+categoria.preco);
+            this.chart['esporte'].push(categoria);
+            this.chart['esporte'].total = esporte;
           }
-        }
+
 
         if(categoria.m_classe_id == 1){
           this.hasOrder = true;
@@ -99,14 +180,48 @@ export class RelatoriosPage {
           this.totalSaida += (+categoria.preco);
         }
       }
-          
+
+        this.categorias.nome = [
+          // 'Salário',
+          // 'Depósitos',
+          'Entret',
+          'Veíc',
+          'Roupa',
+          'Comun',
+          'Com For',
+          'Pres',
+          'Alimen',
+          'Saú',
+          'Casa',
+          'Hig Pes',
+          'Pets',
+          'Esp'
+        ];
+        this.categorias.total = [
+          // salario,
+          // deposito,
+          entretenimento,
+          veiculo,
+          roupa,
+          comunicacao,
+          comerFora,
+          presente,
+          alimentacao,
+          saude,
+          casa,
+          higienePessoal,
+          pet,
+          esporte
+        ];
+
+      console.log(this.categorias);
       console.log(this.movimentacao);
-      this.barChartLabels = this.saidaNome;
+      this.barChartLabels = this.categorias.nome;
       this.barChartData = [
-        {data: this.saidaPreco, label: 'Despesas'}
+        {data: this.categorias.total, label: 'Despesas'}
       ];
 
-      this.doughnutChartLabels = this.saidaNome;
+      this.doughnutChartLabels = this.categorias.nome;
       this.doughnutChartOptions = {
         maintainAspectRatio : true
         // scales: {
@@ -117,7 +232,7 @@ export class RelatoriosPage {
         //     }]
         // }
     }
-    this.doughnutChartData =  this.saidaPreco;
+    this.doughnutChartData =  this.categorias.total;
     this.doughnutChartType = 'doughnut';
 
     setTimeout(()=>{
@@ -142,33 +257,33 @@ export class RelatoriosPage {
   );
 
 }
-teste(){
-  let date = this.searchDate.substring(0, 7);
+// teste(){
+//   let date = this.searchDate.substring(0, 7);
 
-  console.log(date);
+//   console.log(date);
 
-  let usuario = this.service.getUser();
-  console.log(usuario);
-  // this.service.showLoading();
+//   let usuario = this.service.getUser();
+//   console.log(usuario);
+//   // this.service.showLoading();
 
-  let url = 'selecionar-movimentacao-agrupada.php';
+//   let url = 'selecionar-movimentacao-agrupada.php';
 
-  this.service.post(url, {id: usuario.usuario_id, data: date}).subscribe(
-    data => {
+//   this.service.post(url, {id: usuario.usuario_id, data: date}).subscribe(
+//     data => {
 
-  console.log(data);
+//   console.log(data);
       
-  // setTimeout(()=>{
-  //   this.service.showLoading();
-  // },1000);
+//   // setTimeout(()=>{
+//   //   this.service.showLoading();
+//   // },1000);
 
-  },
-  err => {
-    console.log(err);
-  }
-);
+//   },
+//   err => {
+//     console.log(err);
+//   }
+// );
 
-}
+// }
     public barChartOptions:any = {
       scaleShowVerticalLines: false,
       responsive: true

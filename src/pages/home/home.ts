@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
-import {Validators, FormBuilder } from '@angular/forms';
 import { ServiceProvider } from '../../providers/service/service';
-import { ModalDespesaComponent } from '../../components/modal-despesa/modal-despesa';
-import { FormGroup, FormControl } from '@angular/forms';
 import { DespesasPage } from '../despesas/despesas';
 import { RelatoriosPage } from '../relatorios/relatorios';
 
@@ -15,7 +12,7 @@ export class HomePage {
 
   classes: any;
 
-  constructor( public modalCtrl: ModalController, public navCtrl: NavController, private formBuilder: FormBuilder, private service: ServiceProvider ) {
+  constructor( public modalCtrl: ModalController, public navCtrl: NavController, private service: ServiceProvider ) {
     
   }
   ionViewDidLoad() {
