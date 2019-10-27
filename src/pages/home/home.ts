@@ -3,6 +3,7 @@ import { NavController, ModalController } from 'ionic-angular';
 import { ServiceProvider } from '../../providers/service/service';
 import { DespesasPage } from '../despesas/despesas';
 import { RelatoriosPage } from '../relatorios/relatorios';
+import { CadastroProdutosPage } from '../cadastro-produtos/cadastro-produtos';
 
 @Component({
   selector: 'page-home',
@@ -58,5 +59,9 @@ export class HomePage {
 
   toRelatorios(){
     this.navCtrl.push(RelatoriosPage);
+  }
+
+  toRelatorioItems(){
+    this.navCtrl.push(CadastroProdutosPage);
   }
 }

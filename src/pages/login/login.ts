@@ -2,11 +2,6 @@ import { Component } from '@angular/core';
 import { Platform, NavController, NavParams, ModalController } from 'ionic-angular';
 import { ServiceProvider } from '../../providers/service/service';
 import { HomePage } from '../home/home';
-// import { RegisterPage } from '../register/register';
-// import { DashboardPage } from '../dashboard/dashboard';
-// import { RecoverPasswordPage } from '../recover-password/recover-password';
-// import { ModalErrorComponent } from '../../components/modal-error/modal-error';
-import { LoadingComponent } from '../../components/loading/loading';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CadastroPage } from '../cadastro/cadastro';
 
@@ -74,7 +69,7 @@ export class LoginPage {
             if(this.usuario != 'Erro'){
               this.service.setUser(this.usuario);
 
-              this.service.showLoading();
+              this.service.hideLoading();
               this.navCtrl.setRoot(HomePage);
               this.navCtrl.popToRoot();
 
@@ -95,13 +90,13 @@ export class LoginPage {
             }
             else{
               alert("Erro");
-              this.service.showLoading();
+              this.service.hideLoading();
               // this.modalError('Usuário ou Senha inválidos!');  
             } 
           },
           err => {
             alert("Erro");
-            this.service.showLoading();
+            this.service.hideLoading();
             // this.modalError(err.status+' - '+err.statusText);
       
             console.log(err);
@@ -110,19 +105,14 @@ export class LoginPage {
       }, 1000);
 
     }else{
+      this.service.hideLoading();
       alert("Existem campos vazios!");
     }
   }
   toRecoverPassword(){
     // this.navCtrl.setRoot(RecoverPasswordPage);
   }
-  showLoading() {
-    this.loading = this.modalCtrl.create( LoadingComponent );
-    this.loading.present();
-  }
-  hideLoading(){
-    this.loading.dismiss();
-  }
+
   editProfile(){
     // this.navCtrl.push(RegisterPage);
   }

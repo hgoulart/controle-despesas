@@ -10,12 +10,14 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { DespesasPage } from '../pages/despesas/despesas';
 import { RelatoriosPage } from '../pages/relatorios/relatorios';
+import { CadastroProdutosPage } from '../pages/cadastro-produtos/cadastro-produtos';
 import { CadastroPage } from '../pages/cadastro/cadastro';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ServiceProvider } from '../providers/service/service';
 import { ModalDespesaComponent } from '../components/modal-despesa/modal-despesa';
+import { ModalProdutoComponent } from '../components/modal-produto/modal-produto';
 import { LoadingComponent } from '../components/loading/loading';
 import { ModalAlertComponent } from '../components/modal-alert/modal-alert';
 
@@ -34,10 +36,12 @@ import { NgxCurrencyModule } from "ngx-currency";
     LoginPage,
     DespesasPage,
     RelatoriosPage,
+    CadastroProdutosPage,
     ModalDespesaComponent,
     LoadingComponent,
     ModalAlertComponent,
-    CadastroPage
+    CadastroPage,
+    ModalProdutoComponent
   ],
   imports: [
     BrowserModule,
@@ -57,10 +61,12 @@ import { NgxCurrencyModule } from "ngx-currency";
     LoginPage,
     DespesasPage,
     RelatoriosPage,
+    CadastroProdutosPage,
     ModalDespesaComponent,
     LoadingComponent,
     ModalAlertComponent,
-    CadastroPage
+    CadastroPage,
+    ModalProdutoComponent
   ],
   providers: [
     StatusBar,

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { ServiceProvider } from '../../providers/service/service';
 
@@ -37,19 +37,19 @@ export class CadastroPage {
             console.log(data);
             if(data != 'Erro'){
 
-              this.service.showLoading();
+              this.service.hideLoading();
               alert("Salvo com sucesso!");
               this.navCtrl.push(LoginPage);
             }
             else{
               alert("Erro");
-              this.service.showLoading();
+              this.service.hideLoading();
               // this.modalError('Usuário ou Senha inválidos!');  
             } 
           },
           err => {
             alert("Erro");
-            this.service.showLoading();
+            this.service.hideLoading();
             // this.modalError(err.status+' - '+err.statusText);
       
             console.log(err);

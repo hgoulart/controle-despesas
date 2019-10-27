@@ -8,18 +8,28 @@
 </ion-header>
 <ion-content padding>
   <ion-fab center middle>
+      
       <button ion-fab><ion-icon name="md-menu"></ion-icon></button>
       <ion-fab-list side="top">
-        <button ion-fab (click)="toEntradas()" class="icon-income"><ion-icon></ion-icon></button>
+        <span class="floating-text-top">Entradas</span>
+        <button ion-fab (click)="toEntradas()" class="icon-income">
+        </button>
       </ion-fab-list>
       <ion-fab-list side="right">
-        <button ion-fab (click)="toSaidas()" class="icon-expense"><ion-icon></ion-icon></button>
+        <span class="floating-text-bottom">Saídas</span>
+        <button ion-fab (click)="toSaidas()" class="icon-expense">
+        </button>
       </ion-fab-list>
       <ion-fab-list side="left">
-        <button ion-fab (click)="toRelatorios()" class="icon-report"><ion-icon></ion-icon></button>
+        <span class="floating-text-bottom">Dashboard</span>
+        <button ion-fab (click)="toRelatorios()" class="icon-chart">
+        </button>
       </ion-fab-list>
       <ion-fab-list side="bottom">
-        <button ion-fab (click)="toRelatorios()" class="icon-report"><ion-icon></ion-icon></button>
+          <span class="floating-text-bottom">Cadastro</span>
+        <button ion-fab (click)="toRelatorioItems()" class="icon-report">
+          
+        </button>
       </ion-fab-list>
     </ion-fab>
 <ion-fab right bottom>

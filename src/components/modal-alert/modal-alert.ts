@@ -42,13 +42,13 @@ export class ModalAlertComponent {
   
           if(data != 'Erro'){
             alert(data);
-            this.service.showLoading();
+            this.service.hideLoading();
           }
           else{
             // this.service.hideLoading();
             alert('Erro ao tentar excluir o item.');  
             setTimeout(()=>{
-              this.service.showLoading();
+              this.service.hideLoading();
             },1000);
           } 
         },

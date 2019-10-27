@@ -31,6 +31,7 @@ export class ModalDespesaComponent {
     console.log(this.categoria);
   }
   onSubmit(){
+    this.service.showLoading();
     console.log(this.categoria);
     // this.item.item_valor = this.item.item_valor.replace(/,/g, '').replace(/./g, '');
     
@@ -38,7 +39,7 @@ export class ModalDespesaComponent {
     this.categoria.usuario_id = usuario.usuario_id;
     this.categoria.busca_data = this.today;
     console.log(this.categoria);
-    this.service.showLoading();
+    
 
     let url = 'salvar-movimentacao.php';
 
@@ -50,24 +51,24 @@ export class ModalDespesaComponent {
         if(data != 'Erro'){
 
           setTimeout(()=>{
-            this.service.showLoading();
+            this.service.hideLoading();
             this.navCtrl.setRoot(HomePage);
             this.navCtrl.popToRoot();
-          },1000);
+          },2000);
         }
         else{
           setTimeout(()=>{
-            this.service.showLoading();
+            this.service.hideLoading();
             alert('Erro!'); 
-          },1000);
+          },2000);
            
         } 
       },
       err => {
         setTimeout(()=>{
-          this.service.showLoading();
+          this.service.hideLoading();
           alert('Erro!'); 
-        },1000);
+        },2000);
         console.log(err);
       }
     );

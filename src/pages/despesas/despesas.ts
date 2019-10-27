@@ -5,6 +5,7 @@ import { ServiceProvider } from '../../providers/service/service';
 import { ModalDespesaComponent } from '../../components/modal-despesa/modal-despesa';
 import { FormGroup, FormControl } from '@angular/forms';
 import { RelatoriosPage } from '../relatorios/relatorios';
+import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
@@ -119,7 +120,7 @@ export class DespesasPage {
         // this.service.hideLoading();
         // this.modalError(err.status+' - '+err.statusText);
   
-        console.log(err);
+        alert(err);
       }
     );
 
@@ -134,5 +135,8 @@ export class DespesasPage {
   }
   toRelatorios(){
     this.navCtrl.push(RelatoriosPage);
+  }
+  back(){
+    this.navCtrl.push(HomePage);
   }
 }

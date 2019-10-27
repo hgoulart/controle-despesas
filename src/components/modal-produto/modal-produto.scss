@@ -1,0 +1,16 @@
+.input-quantity{
+    border: none;
+    text-align: right;
+    color: #d0a44d;
+    float: right;
+}
+input.input-quantity:disabled {
+    background: #ffffff;
+  }
+  ion-label{
+      font-weight: 900;
+  }
+  .select-text{
+    color: #d0a44d;
+    font-weight: 900;
+  }

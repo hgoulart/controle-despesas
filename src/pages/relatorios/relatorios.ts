@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { ServiceProvider } from '../../providers/service/service';
-import { ModalAlertComponent } from '../../components/modal-alert/modal-alert';
+import { ModalProdutoComponent } from '../../components/modal-produto/modal-produto';
 import { LoginPage } from '../login/login';
 import * as moment from 'moment';
+import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
@@ -15,6 +16,7 @@ export class RelatoriosPage {
   movimentacao:any = new Array();
   searchDate: string;
   today: string;
+  date: string;
   hasOrder: boolean;
   statusSelected: any = 1;
   status: any;
@@ -74,19 +76,26 @@ export class RelatoriosPage {
     this.movimentacao =  new Array();
     this.carregarMovimentacao();
   }
+  newSearch(){
+    this.movimentacao = null;
+    this.barChartData = null;
+    this.doughnutChartData = null;
+  }
   carregarMovimentacao(){
-    let date = this.searchDate.substring(0, 7);
+    this.date = this.searchDate.substring(0, 7);
 
-    console.log(date);
+    console.log(this.date);
 
     let usuario = this.service.getUser();
     console.log(usuario);
     this.service.showLoading();
   
-    let url = 'selecionar-movimentacao.php';
+    let url = 'selecionar-movimentacao-agrupada.php';
   
-    this.service.post(url, {id: usuario.usuario_id, data: date}).subscribe(
+    this.service.post(url, {id: usuario.usuario_id, data: this.date}).subscribe(
       data => {
+
+        console.log(data);
   
       this.movimentacao = data;
 
@@ -236,7 +245,7 @@ export class RelatoriosPage {
     this.doughnutChartType = 'doughnut';
 
     setTimeout(()=>{
-      this.service.showLoading();
+      this.service.hideLoading();
     },1000);
   
       // if(this.user != 'Erro'){
@@ -249,7 +258,7 @@ export class RelatoriosPage {
       console.log(this.chart);
     },
     err => {
-      // this.service.hideLoading();
+      this.service.hideLoading();
       // this.modalError(err.status+' - '+err.statusText);
 
       console.log(err);
@@ -257,33 +266,6 @@ export class RelatoriosPage {
   );
 
 }
-// teste(){
-//   let date = this.searchDate.substring(0, 7);
-
-//   console.log(date);
-
-//   let usuario = this.service.getUser();
-//   console.log(usuario);
-//   // this.service.showLoading();
-
-//   let url = 'selecionar-movimentacao-agrupada.php';
-
-//   this.service.post(url, {id: usuario.usuario_id, data: date}).subscribe(
-//     data => {
-
-//   console.log(data);
-      
-//   // setTimeout(()=>{
-//   //   this.service.showLoading();
-//   // },1000);
-
-//   },
-//   err => {
-//     console.log(err);
-//   }
-// );
-
-// }
     public barChartOptions:any = {
       scaleShowVerticalLines: false,
       responsive: true
@@ -306,11 +288,20 @@ export class RelatoriosPage {
       this.navCtrl.setRoot(LoginPage);
       this.navCtrl.popToRoot();
     }
-
-    getCategoria(categoria){
+    showModalProduto(categoria){
+      categoria.status = !categoria.status;
+      categoria.data = this.date;
       console.log(categoria);
-      const modal = this.modalCtrl.create( ModalAlertComponent, {data: categoria });
+      const modal = this.modalCtrl.create( ModalProdutoComponent, {data: categoria });
       modal.present();
     }
-
+    getCategoria(categoria){
+      categoria.status = !categoria.status;
+    }
+    removeItem(){
+      console.log('item');
+    }
+    back(){
+      this.navCtrl.push(HomePage);
+    }
 }

@@ -5,7 +5,7 @@
     <ion-row>
 
       <ion-col col-12 text-center>
-          <ion-img id="logo" width="120px" height="120px" src="../assets/imgs/logo.png"></ion-img>
+          <img id="logo" src="../assets/imgs/logo.png"/>
       </ion-col>
 
     </ion-row>
@@ -27,7 +27,7 @@
   </form>
 
   <div>
-    <button ion-button block  (click)="Login()">Entrar</button>
+    <button ion-button block  outline (click)="Login()">Entrar</button>
     <!-- <button ion-button block class="btn-grey" (click)="toRegister()">Cadastrar</button>
     <button ion-button block class="btn-grey" (click)="toRecoverPassword()" end>Recuperar Senha</button> -->
   </div>

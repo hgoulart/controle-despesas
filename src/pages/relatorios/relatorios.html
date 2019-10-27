@@ -18,8 +18,8 @@
 
   </ion-list>
 
-  <button ion-button block class="btn-default" *ngIf="!hasOrder" (click)="search()">Pesquisar</button>
-  <button ion-button block class="btn-default" *ngIf="hasOrder" (click)="newSearch()">Nova Pesquisa</button>
+  <button ion-button block outline class="btn-default" [disabled]="hasOrder" (click)="search()">Pesquisar</button>
+  <!-- <button ion-button block outline class="btn-default" *ngIf="hasOrder" (click)="newSearch()">Nova Pesquisa</button> -->
 
       <div style="display: block"  *ngIf="hasOrder">
         <canvas baseChart
@@ -51,7 +51,7 @@
       <ion-row>
         <ion-col col-12 class="col-order-number"><div><strong>Entradas</strong></div></ion-col>
       </ion-row>
-      <ion-row  *ngFor="let categoria of movimentacao" (click)="getCategoria(categoria)">
+      <ion-row  *ngFor="let categoria of movimentacao">
         <ion-col col-6 class="col-order-number" *ngIf="categoria.m_classe_id == 1">
           <div style="text-align: left;">
           <span style="color: #488aff;">{{ categoria.categoria_nome }}</span>
@@ -64,6 +64,7 @@
           </div>
           <i style="display: block;text-align: right;">{{ categoria.preco_data | date  : 'dd/MM/yyyy'  }}</i>
         </ion-col>
+
       </ion-row>
       <ion-row>
         <ion-col col-12 class="col-order-number">
@@ -76,18 +77,36 @@
       <ion-row>
         <ion-col col-12 class="col-order-number"><div><strong>Saídas</strong></div></ion-col>
       </ion-row>
-      <ion-row  *ngFor="let categoria of movimentacao" (click)="getCategoria(categoria)">
-        <ion-col col-6 class="col-order-number" *ngIf="categoria.m_classe_id == 2">
+      <ion-row  *ngFor="let categoria of movimentacao" >
+        <ion-col col-6 class="col-order-number" *ngIf="categoria.m_classe_id == 2" (click)="getCategoria(categoria)">
           <div style="text-align: left;">
           <span style="color: red;">{{ categoria.categoria_nome }}</span>
           </div>
           <i style="display: block;text-align: left;">{{categoria.observacoes}}</i>
         </ion-col>
-        <ion-col col-6 class="col-order-number" *ngIf="categoria.m_classe_id == 2">
+        <ion-col col-6 class="col-order-number" *ngIf="categoria.m_classe_id == 2" (click)="getCategoria(categoria)">
           <div style="text-align: right;">
             <span style="color: red;">{{ categoria.preco | currency:'BRL':'symbol':'1.2-3':'pt'}}</span>
           </div>
           <i style="display: block;text-align: right;">{{ categoria.preco_data | date  : 'dd/MM/yyyy'  }}</i>
+        </ion-col>
+        <ion-col col-12>
+          
+          <ion-list  [class.active]="categoria.status" class="list-items" >
+            <button ion-button block icon-end color="secondary" class="add-product" (click)="showModalProduto(categoria)">
+              Incluir Produto
+              <ion-icon name="ios-add-circle-outline"></ion-icon>
+            </button>
+            <ion-item class="list-item" (click)="removeItem()" *ngFor="let item of categoria.items">
+              <ion-label>{{item.produto_nome}} <span style="color: #a52a2a; float: right;">{{item.unitario | currency:'BRL':'symbol':'1.2-3':'pt'}} - {{item.total | currency:'BRL':'symbol':'1.2-3':'pt'}}</span></ion-label>
+            </ion-item>  
+            <!-- <ion-item class="list-item">
+              <ion-label>6 Pão <span style="color: #a52a2a; float: right;">R$ 5,00</span></ion-label>
+            </ion-item>  
+            <ion-item class="list-item">
+              <ion-label>6 Pão <span style="color: #a52a2a; float: right;">R$ 5,00</span></ion-label>
+            </ion-item>                                   -->
+          </ion-list>           
         </ion-col>
       </ion-row>
       <ion-row>

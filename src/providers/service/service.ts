@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { LoadingController } from 'ionic-angular';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -19,9 +20,10 @@ export class ServiceProvider {
     usuario_nome: '',
     usuario_email: '',
 
-  }
+  };
+  loading: any;
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, public loadingCtrl: LoadingController) {
     console.log('Hello ServiceProvider Provider');
   }
   get(url){
@@ -42,8 +44,33 @@ export class ServiceProvider {
   getUser(){
     return this.usuario;
   }
-  showLoading(): boolean{
-    return document.getElementsByClassName("show-loading")[0].classList.toggle("show");
+  // showLoading(): boolean{
+  //   return document.getElementsByClassName("show-loading")[0].classList.toggle("show");
+  // }
+  showLoading() {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'hide',
+      content: `
+      <div padding class="show-loading">
+        <div class="msg-container">
+            <img src="../assets/imgs/loading.svg" alt="" class="msg-return">
+            <p>Carregando...</p>
+        </div>
+      </div>
+     `
+    });
+  
+    this.loading.onDidDismiss(() => {
+      console.log('Dismissed loading');
+    });
+  
+    this.loading.present();
   }
+  hideLoading() {
+    setTimeout(() => {
+      this.loading.dismiss();
+    }, 2000);
+  }
+  
 }
 //http://localhost/controle-despesas-api/data/api/selecionar-classes.php

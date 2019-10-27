@@ -19,13 +19,19 @@ page-relatorios {
         padding: 0;
         padding-bottom: 10px;
         border: 2px solid rgba(208, 164, 77, 0.2);
-        .col{
-            font-size: 16px;
-            i{
-                display: block;
-                font-size: 10px;
+        .row{
+            .col{
+                font-size: 16px;
+                span{
+                    color: #ffffff;
+                }
+                i{
+                    display: block;
+                    font-size: 10px;
+                }
             }
         }
+
     } 
     ion-select{
         width: auto;
@@ -46,12 +52,27 @@ page-relatorios {
         padding-top: 15px;
         div{
             margin-bottom: 10px;
-                span{
-                    color: #d0a44d;
-                }
+                // span{
+                //     color: #d0a44d;
+                // }
         }
     }
     .button-block-md{
         margin: 25px 0 35px 0;
+    }
+    .list-items{
+        display: none;
+        border: 2px solid #d4d4ba;
+        border-bottom: none;
+        background-color: #faebd7;
+        .list-item{
+            background-color: #faebd7;
+        }
+    }
+    .list-items.active{
+        display: block;
+    }
+    .add-product{
+        margin: 0;
     }
 }

@@ -1,0 +1,66 @@
+<ion-header >
+
+  <ion-navbar color="light">
+    <ion-title>Incluir Produto</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item>
+      <label><strong>Categoria: </strong></label>
+      <input type="text" class="input-quantity" name="nome" [value]="dados.categoria_nome" disabled="true">
+    </ion-item>
+
+    <ion-item>
+      <label><strong>Total: </strong></label>
+      <input type="text" class="input-quantity" name="total" [value]="dados.preco | currency:'BRL': true" disabled="true">
+    </ion-item> 
+ 
+
+    <ion-item>
+      <ion-label color="dark">Produto:</ion-label>
+      <ion-select (ionChange)="onStateChange($event)"  okText="Confirmar" cancelText="Cancelar">
+        <ion-option value="-1" selected="true">Selecionar</ion-option>
+        <ion-option *ngFor="let produto of produtos" [value]="produto.produto_id">{{ produto.produto_nome  }}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="dados.m_categoria_id != 4">
+      <ion-label color="dark">Quantidade:</ion-label>
+      <ion-input  class="input-text input-quantity" type="number" name="quantidade" [(ngModel)]="produto.quantidade" placeholder="Ex.: 1" [disabled]="!produto.produto"></ion-input>
+    </ion-item> 
+
+    <ion-item *ngIf="dados.m_categoria_id != 4">
+      <label>Valor unitário:</label>
+      <input class="input-text input-quantity" currencyMask name="money" [(ngModel)]="produto.valor" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" [disabled]="!produto.quantidade"/>
+    </ion-item>
+
+    <!-- <ion-item *ngIf="dados.m_categoria_id != 4">
+      <label><strong>Total: </strong></label>
+      <input type="number" name="quantidade" class="input-quantity" [value]="produto.total | number:'2.1-2'" >
+    </ion-item> -->
+    
+    <ion-item *ngIf="dados.m_categoria_id == 4">
+      <label><strong>Quantidade: </strong></label>
+      <input type="number" name="quantidade" class="input-quantity" [value]="produto.total / produto.valor | number:'2.1-2'" disabled="true">
+    </ion-item> 
+    
+    <ion-item *ngIf="dados.m_categoria_id == 4">
+        <label>Valor unitário:</label>
+        <input class="input-text" currencyMask name="money" [(ngModel)]="produto.valor" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"/>
+      </ion-item>
+
+    <ion-item >
+        <label>Valor total:</label>
+      <input class="input-text input-quantity" currencyMask name="money" [(ngModel)]="produto.total" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" [disabled]="!produto.valor" />
+    </ion-item>
+
+  </ion-list>
+
+  <button ion-button block outline color="secondary" type="button" (click)="incluirProduto()" >Confirmar</button>
+  <button ion-button block outline color="gold" (click)="closeModal()">Cancelar</button>
+
+</ion-content>

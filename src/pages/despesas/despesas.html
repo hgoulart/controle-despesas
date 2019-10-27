@@ -20,12 +20,13 @@
         </ion-item>
       </ion-item-group>
     </ion-list>
-    <button ion-button block outline (click)="closeModal()">Voltar</button>
+    <button ion-button block outline color="gold" (click)="closeModal()">Voltar</button>
   <ion-fab right bottom>
     <button ion-fab color="primary"><ion-icon name="ios-menu-outline"></ion-icon></button>
     <ion-fab-list side="top">
         <button ion-fab><ion-icon name="ios-unlock-outline" ></ion-icon></button>
         <button ion-fab (click)="toRelatorios()"><ion-icon name="ios-stats-outline" ></ion-icon></button>
+        <button ion-fab (click)="back()"><ion-icon name="ios-arrow-dropleft-outline" ></ion-icon></button>
     </ion-fab-list>
   </ion-fab>
 </ion-content>
