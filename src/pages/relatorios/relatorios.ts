@@ -57,7 +57,8 @@ export class RelatoriosPage {
       casa : [],
       higienePessoal : [],
       pet : [],
-      esporte : []
+      esporte : [],
+      educacao : []
     };
     this.categorias ={
       nome : [],
@@ -113,6 +114,7 @@ export class RelatoriosPage {
       let higienePessoal: number = 0;
       let pet: number = 0;
       let esporte: number = 0;
+      let educacao: number = 0;
 
       for(let categoria of this.movimentacao){
 
@@ -172,6 +174,10 @@ export class RelatoriosPage {
             esporte += (+categoria.preco);
             this.chart['esporte'].push(categoria);
             this.chart['esporte'].total = esporte;
+          }else if(categoria.m_categoria_id == 15){
+            educacao += (+categoria.preco);
+            this.chart['educacao'].push(categoria);
+            this.chart['educacao'].total = educacao;
           }
 
 
@@ -220,7 +226,8 @@ export class RelatoriosPage {
           casa,
           higienePessoal,
           pet,
-          esporte
+          esporte,
+          educacao
         ];
 
       console.log(this.categorias);

@@ -12,7 +12,7 @@ import { CadastroPage } from '../cadastro/cadastro';
 export class LoginPage {
 
   userData: any;
-   formData =  {"email":"","pass":""};
+   formData =  {"email":"hingo@email.com","pass":"123"};
   loading: any;
   usuario: any = {
     usuario_id : 0,
