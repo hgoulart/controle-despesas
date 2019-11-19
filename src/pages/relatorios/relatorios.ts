@@ -210,7 +210,8 @@ export class RelatoriosPage {
           'Casa',
           'Hig Pes',
           'Pets',
-          'Esp'
+          'Esp',
+          'Educ'
         ];
         this.categorias.total = [
           // salario,

@@ -4,6 +4,10 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
+import { CadastroProdutosPage } from '../pages/cadastro-produtos/cadastro-produtos';
+import { RecoverPasswordPage } from '../pages/recover-password/recover-password';
+import { RelatoriosPage } from '../pages/relatorios/relatorios';
+import { DespesasPage } from '../pages/despesas/despesas';
 
 @Component({
   templateUrl: 'app.html'
@@ -13,15 +17,18 @@ export class MyApp {
 
   rootPage: any = LoginPage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any, icon: string}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'Login', component: LoginPage }
+      { title: 'Home', component: HomePage, icon: 'ios-home-outline' },
+      { title: 'Dashboard', component: RelatoriosPage, icon: 'ios-stats-outline' },
+      { title: 'Cadastrar Produto', component: CadastroProdutosPage, icon: 'ios-add-outline' },
+      { title: 'Login', component: LoginPage, icon: 'ios-person-outline' },
+      { title: 'Recuperar Senha', component:  RecoverPasswordPage, icon: 'ios-unlock-outline' }
     ];
 
   }

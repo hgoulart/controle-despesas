@@ -4,6 +4,8 @@ import { ServiceProvider } from '../../providers/service/service';
 import { DespesasPage } from '../despesas/despesas';
 import { RelatoriosPage } from '../relatorios/relatorios';
 import { CadastroProdutosPage } from '../cadastro-produtos/cadastro-produtos';
+import { CadastroPage } from '../cadastro/cadastro';
+import { RecoverPasswordPage } from '../recover-password/recover-password';
 
 @Component({
   selector: 'page-home',
@@ -56,7 +58,12 @@ export class HomePage {
     );
 
   }
-
+  toRegister(){
+    this.navCtrl.push(CadastroPage);
+  }
+  toRecoverPassword(){
+    this.navCtrl.setRoot(RecoverPasswordPage);
+  }
   toRelatorios(){
     this.navCtrl.push(RelatoriosPage);
   }

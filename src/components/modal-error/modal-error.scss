@@ -1,0 +1,23 @@
+modal-error {
+    #show-success{
+        display: block;
+        z-index: 99999;
+        background-color: rgba(0, 0, 0, 0.8 );
+    }
+    .msg-container{
+        display: flex;;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        flex-direction: column;
+        .msg-return{
+            width: 164px;
+            height: 164px;
+        }
+        p{
+            color: #d0a44d;
+            font-weight: 900;
+            font-size: 16px;
+        }
+    }
+}

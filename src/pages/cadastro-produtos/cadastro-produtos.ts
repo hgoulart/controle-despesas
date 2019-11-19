@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { ServiceProvider } from '../../providers/service/service';
 import { HomePage } from '../home/home';
+import { LoginPage } from '../login/login';
 
 @IonicPage()
 @Component({
@@ -91,5 +92,7 @@ export class CadastroProdutosPage {
   back(){
     this.navCtrl.push(HomePage);
   }
-
+  exit(){
+    this.navCtrl.push(LoginPage);
+  }
 }

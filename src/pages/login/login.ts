@@ -4,6 +4,9 @@ import { ServiceProvider } from '../../providers/service/service';
 import { HomePage } from '../home/home';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CadastroPage } from '../cadastro/cadastro';
+import { RecoverPasswordPage } from '../recover-password/recover-password';
+import { ModalErrorComponent } from '../../components/modal-error/modal-error';
+import { ModalSuccessComponent } from '../../components/modal-success/modal-success';
 
 @Component({
   selector: 'page-login',
@@ -31,10 +34,8 @@ export class LoginPage {
 
       this.splashScreen.hide();
     });
-    
   }
 
-  
   ionViewDidLoad() {
     console.log('LoginPage');
   }
@@ -87,15 +88,14 @@ export class LoginPage {
               
             }
             else{
-              alert("Erro");
               this.service.hideLoading();
-              // this.modalError('Usuário ou Senha inválidos!');  
+              this.modalError('Usuário ou Senha inválidos!');  
             } 
           },
           err => {
-            alert("Erro");
+            
             this.service.hideLoading();
-            // this.modalError(err.status+' - '+err.statusText);
+            this.modalError('Email inválido ou senha inválidos!'); 
       
             console.log(err);
           }
@@ -108,10 +108,18 @@ export class LoginPage {
     }
   }
   toRecoverPassword(){
-    // this.navCtrl.setRoot(RecoverPasswordPage);
+    this.navCtrl.setRoot(RecoverPasswordPage);
   }
 
   editProfile(){
     // this.navCtrl.push(RegisterPage);
+  }
+  modalError(message) {
+    let modalError = this.modalCtrl.create(ModalErrorComponent, {data: message});
+    modalError.present();
+  }
+  modalSuccess(message) {
+    let modalSuccess = this.modalCtrl.create(ModalSuccessComponent, {data: message});
+    modalSuccess.present();
   }
 }

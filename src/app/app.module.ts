@@ -12,6 +12,7 @@ import { DespesasPage } from '../pages/despesas/despesas';
 import { RelatoriosPage } from '../pages/relatorios/relatorios';
 import { CadastroProdutosPage } from '../pages/cadastro-produtos/cadastro-produtos';
 import { CadastroPage } from '../pages/cadastro/cadastro';
+import { RecoverPasswordPage } from '../pages/recover-password/recover-password';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -37,6 +38,7 @@ import { NgxCurrencyModule } from "ngx-currency";
     DespesasPage,
     RelatoriosPage,
     CadastroProdutosPage,
+    RecoverPasswordPage,
     ModalDespesaComponent,
     LoadingComponent,
     ModalAlertComponent,
@@ -66,6 +68,7 @@ import { NgxCurrencyModule } from "ngx-currency";
     LoadingComponent,
     ModalAlertComponent,
     CadastroPage,
+    RecoverPasswordPage,
     ModalProdutoComponent
   ],
   providers: [
