@@ -21,6 +21,7 @@ import { ModalDespesaComponent } from '../components/modal-despesa/modal-despesa
 import { ModalProdutoComponent } from '../components/modal-produto/modal-produto';
 import { LoadingComponent } from '../components/loading/loading';
 import { ModalAlertComponent } from '../components/modal-alert/modal-alert';
+import { ModalErrorComponent } from '../components/modal-error/modal-error';
 
 import { HttpClientModule } from '@angular/common/http';
 import { IonMaskModule } from '@pluritech/ion-mask';
@@ -43,7 +44,8 @@ import { NgxCurrencyModule } from "ngx-currency";
     LoadingComponent,
     ModalAlertComponent,
     CadastroPage,
-    ModalProdutoComponent
+    ModalProdutoComponent,
+    ModalErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +71,8 @@ import { NgxCurrencyModule } from "ngx-currency";
     ModalAlertComponent,
     CadastroPage,
     RecoverPasswordPage,
-    ModalProdutoComponent
+    ModalProdutoComponent,
+    ModalErrorComponent
   ],
   providers: [
     StatusBar,

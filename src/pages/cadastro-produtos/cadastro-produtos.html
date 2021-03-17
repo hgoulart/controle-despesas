@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Cadastro de Produto</ion-title>
+    <ion-title>Cadastro de Despesa Fixa</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -9,45 +9,110 @@
 
 <ion-content padding>
 
-    <ion-header >
+  <ion-header>
 
-        <ion-navbar color="light">
-          <ion-title>Novo Produto</ion-title>
-        </ion-navbar>
-      
-      </ion-header>
-      
-      <ion-content padding>
-      
-      <ion-list>
-        <ion-item>
+    <ion-navbar color="light">
+      <ion-title>Nova Despesa</ion-title>
+    </ion-navbar>
+
+  </ion-header>
+
+  <ion-content padding>
+
+    <ion-list>
+      <ion-item>
+        <ion-label color="dark">Categoria:</ion-label>
+        <ion-select (ionChange)="onStateChange($event)" okText="Confirmar" cancelText="Cancelar">
+          <ion-option value="-1" selected="true">Selecionar</ion-option>
+          <ion-option *ngFor="let categoria of categorias" [value]="categoria.categoria_id">
+            {{ categoria.categoria_nome }}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="dark">Despesa:</ion-label>
+        <ion-input type="text" name="produto" [(ngModel)]="produto.comments" placeholder="ex.: Água, luz, etc...">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="dark">Parcelas:</ion-label>
+        <ion-input type="number" name="parcelas" [(ngModel)]="produto.parcelas" placeholder="12"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="dark">Valor Inicial:</ion-label>
+        <ion-input type="text" name="valor" [(ngModel)]="produto.valor" placeholder="ex.: 180"></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    <button class="btn-cadastro" ion-button block outline color="secondary" type="button" (click)="incluirProduto()">Confirmar</button>
+    <button class="btn-cadastro" ion-button block outline color="gold" (click)="back()">Cancelar</button>
+    <button class="btn-cadastro" ion-button block outline color="dark" (click)="carregarMovimentacao()">Despesas fixas registradas</button>
+
+    <ion-list lines="full" class="accordeon-list" color="dark" *ngFor="let item of movimentacao" >
+
+      <ion-item color="dark" (click)="open(item)">
+        <ion-label>{{item.observacoes}}</ion-label>
+      </ion-item>
+
+      <div *ngIf="item.isopen">
+        <ion-item (click)="open(item)">
+          <ion-label color="dark">Despesa:</ion-label>
+          <ion-input type="text" name="observacoes" [(ngModel)]="item.observacoes"></ion-input>
+        </ion-item>
+
+        <ion-item (click)="changeCategoria(item)">
+          <ion-label>Categoria: <span class="text-fixed">{{item.categoria_nome}}</span></ion-label>
+        </ion-item>
+
+        <ion-item *ngIf="item.opencategoria">
           <ion-label color="dark">Categoria:</ion-label>
-          <ion-select (ionChange)="onStateChange($event)"  okText="Confirmar" cancelText="Cancelar">
+          <ion-select (ionChange)="onChangeCategoria($event,item)" okText="Confirmar" cancelText="Cancelar">
             <ion-option value="-1" selected="true">Selecionar</ion-option>
-            <ion-option *ngFor="let categoria of categorias" [value]="categoria.categoria_id">{{ categoria.categoria_nome  }}</ion-option>
+            <ion-option *ngFor="let categoria of categorias" [value]="categoria.categoria_id">
+              {{ categoria.categoria_nome }}
+            </ion-option>
           </ion-select>
         </ion-item>
-      
-          <ion-item>
-            <ion-label color="dark">Nome:</ion-label>
-            <ion-input type="text"  name="produto" [(ngModel)]="produto.nome" placeholder="Nome do produto"></ion-input>
-          </ion-item>
-      
-        </ion-list>
-      
-        <button ion-button block outline color="secondary" type="button" (click)="incluirProduto()" >Confirmar</button>
-        <button ion-button block outline color="gold" (click)="back()">Cancelar</button>
-      
-      </ion-content>
-    
-    <ion-fab right bottom>
-    <button ion-fab color="primary"><ion-icon name="ios-menu"></ion-icon></button>
+        <ion-item>
+          <ion-label color="dark">Custo:</ion-label>
+          <ion-input type="text" name="preco" [(ngModel)]="item.preco"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Data: <span class="text-fixed">{{item.preco_data}}</span></ion-label>
+          
+        </ion-item>
+
+        <div class="btn-list">
+          <button class="btn-cadastro" ion-button  color="secondary" (click)="atualizarDespesa(item)">Salvar</button>
+          <button class="btn-cadastro" ion-button  color="danger" (click)="deletarDespesa(item)">Remover</button>
+        </div>
+
+      </div>
+
+    </ion-list>
+
+  </ion-content>
+
+  <ion-fab right bottom>
+    <button ion-fab color="primary">
+      <ion-icon name="ios-menu"></ion-icon>
+    </button>
     <ion-fab-list side="top">
-      <button ion-fab (click)="back()"><ion-icon name="ios-arrow-dropleft-outline" ></ion-icon></button>
-      <button ion-fab (click)="exit()"><ion-icon name="ios-exit-outline"></ion-icon></button>
+      <button ion-fab (click)="back()">
+        <ion-icon name="ios-arrow-dropleft-outline"></ion-icon>
+      </button>
+      <button ion-fab (click)="exit()">
+        <ion-icon name="ios-exit-outline"></ion-icon>
+      </button>
     </ion-fab-list>
   </ion-fab>
 
 </ion-content>
 
-<button ion-fab mini class="btn-top"><ion-icon name="ios-sync-outline"></ion-icon></button>
+<button ion-fab mini class="btn-top">
+  <ion-icon name="ios-sync-outline"></ion-icon>
+</button>

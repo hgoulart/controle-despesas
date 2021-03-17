@@ -1,0 +1,53 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Cadastro de Produto</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-header >
+
+        <ion-navbar color="light">
+          <ion-title>Novo Produto</ion-title>
+        </ion-navbar>
+      
+      </ion-header>
+      
+      <ion-content padding>
+      
+      <ion-list>
+        <ion-item>
+          <ion-label color="dark">Categoria:</ion-label>
+          <ion-select (ionChange)="onStateChange($event)"  okText="Confirmar" cancelText="Cancelar">
+            <ion-option value="-1" selected="true">Selecionar</ion-option>
+            <ion-option *ngFor="let categoria of categorias" [value]="categoria.categoria_id">{{ categoria.categoria_nome  }}</ion-option>
+          </ion-select>
+        </ion-item>
+      
+          <ion-item>
+            <ion-label color="dark">Nome:</ion-label>
+            <ion-input type="text"  name="produto" [(ngModel)]="produto.nome" placeholder="Nome do produto"></ion-input>
+          </ion-item>
+      
+        </ion-list>
+      
+        <button ion-button block outline color="secondary" type="button" (click)="incluirProduto()" >Confirmar</button>
+        <button ion-button block outline color="gold" (click)="back()">Cancelar</button>
+      
+      </ion-content>
+    
+    <ion-fab right bottom>
+    <button ion-fab color="primary"><ion-icon name="ios-menu"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab (click)="back()"><ion-icon name="ios-arrow-dropleft-outline" ></ion-icon></button>
+      <button ion-fab (click)="exit()"><ion-icon name="ios-exit-outline"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+
+</ion-content>
+
+<button ion-fab mini class="btn-top"><ion-icon name="ios-sync-outline"></ion-icon></button>

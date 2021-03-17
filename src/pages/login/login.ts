@@ -65,7 +65,7 @@ export class LoginPage {
 
             console.log(this.usuario);
   
-            if(this.usuario != 'Erro'){
+            if(this.usuario != 'Erro' && this.usuario != null){
               this.service.setUser(this.usuario);
 
               this.service.hideLoading();

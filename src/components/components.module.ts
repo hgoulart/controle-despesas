@@ -12,7 +12,6 @@ import { ModalSuccessComponent } from './modal-success/modal-success';
     ModalProdutoComponent,
     ModalErrorComponent,
     ModalSuccessComponent],
-	imports: [],
 	exports: [ModalDespesaComponent,
     LoadingComponent,
     ModalAlertComponent,

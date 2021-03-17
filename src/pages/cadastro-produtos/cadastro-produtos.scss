@@ -14,4 +14,20 @@ page-cadastro-produtos {
     .text-input-md{
         color: #d0a44d;
     }
+    .btn-cadastro{
+        margin-bottom: 15px;
+    }
+    .accordeon-list{
+        border: 1px solid grey;
+    }
+    .btn-list{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 10px 0 5px 0;
+    }
+    span.text-fixed{
+        float: right;
+        color: #d0a44d;
+    }
 }
