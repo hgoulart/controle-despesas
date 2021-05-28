@@ -8,7 +8,7 @@ import { ServiceProvider } from '../../providers/service/service';
 })
 export class ModalAlertComponent {
 
-  dados: any =  {
+  dados: any = {
     item_img: "",
     item_nome: "",
     m_classe_id: "",
@@ -20,44 +20,44 @@ export class ModalAlertComponent {
     preco_id: "",
   }
 
-  constructor( private service: ServiceProvider, public viewCtrl: ViewController, params: NavParams) {
+  constructor(private service: ServiceProvider, public viewCtrl: ViewController, params: NavParams) {
     console.log('Hello ModalAlertComponent Component');
     this.dados = params.get('data');
     console.log(this.dados);
 
   }
-  closeModal(){
+  closeModal() {
     this.viewCtrl.dismiss();
   }
-  public removeItem(){
-   
+  public removeItem() {
+
     this.service.showLoading();
-  
-      let url = 'deletar-item.php';
-  
-      this.service.post(url, this.dados ).subscribe(
-        data => {
-  
+
+    let url = 'deletar-item.php';
+
+    this.service.post(url, this.dados).subscribe(
+      data => {
+
         console.log(data);
-  
-          if(data != 'Erro'){
-            alert(data);
-            this.service.hideLoading();
-          }
-          else{
-            // this.service.hideLoading();
-            alert('Erro ao tentar excluir o item.');  
-            setTimeout(()=>{
-              this.service.hideLoading();
-            },1000);
-          } 
-        },
-        err => {
-          // this.service.hideLoading();
-          // this.modalError(err.status+' - '+err.statusText);
-    
-          console.log(err);
+
+        if (data != 'Erro') {
+          alert(data);
+          this.service.hideLoading();
         }
-      );
-    }
+        else {
+          // this.service.hideLoading();
+          alert('Erro ao tentar excluir o item.');
+          setTimeout(() => {
+            this.service.hideLoading();
+          }, 1000);
+        }
+      },
+      err => {
+        // this.service.hideLoading();
+        // this.modalError(err.status+' - '+err.statusText);
+
+        console.log(err);
+      }
+    );
+  }
 }

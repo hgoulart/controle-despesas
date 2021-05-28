@@ -156,7 +156,6 @@ export class CadastroProdutosPage {
 
   }
 
-
   open(item) {
     item.isopen = !item.isopen;
   }
