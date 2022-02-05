@@ -24,11 +24,11 @@ clone the project
 
 go to root folder and open `cmd` as admin
 
-## Passo/step 3:
+## step 3:
 
 type `npm install`
 
-## Passo/step 4
+## step 4
 
 type `ionic serve` to open in the browser.
 
