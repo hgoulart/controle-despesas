@@ -11,8 +11,8 @@ const httpOptions = {
 @Injectable()
 export class ServiceProvider {
 
-  // API_url: string = "http://localhost/controle-despesas-api/data/api/";
-  API_url: string  = "http://hingorocha.com.br/homologaprojeto/despesas-api/data/api/";
+  API_url: string = "http://localhost/controle-despesas-api/data/api/";
+
   categorias: any;
   classes: any;
   usuario: any = {
